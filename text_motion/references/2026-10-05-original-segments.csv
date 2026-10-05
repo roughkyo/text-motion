@@ -1,0 +1,183 @@
+file,segment,start_seconds,end_seconds,duration_seconds,content,motion_observation,time_precision
+11971627.mp4,1,0,1,1,Designed for fast titles,단어 순차 등장·강조색,manual_visual_4fps_approx_0.25s
+11971627.mp4,2,1,2,1,Motion ready,타이핑·커서,manual_visual_4fps_approx_0.25s
+11971627.mp4,3,2,3,1,Motion ready right now,단어 순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,4,3,4.004,1.0039999999999996,Active,글자 등장,manual_visual_4fps_approx_0.25s
+11971627.mp4,5,4.004,5.005,1.0010000000000003,Online,밝은 배경·대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,6,5.005,6.006,1.0010000000000003,Ready,검은 배경·대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,7,6.006,7.007,1.0009999999999994,Text drives motion,흰 배경·두 줄 설명,manual_visual_4fps_approx_0.25s
+11971627.mp4,8,7.007,8.25,1.2430000000000003,모바일 카드,세로 카드 축소·내부 자막,manual_visual_4fps_approx_0.25s
+11971627.mp4,9,8.25,9.009,0.7590000000000003,Build,타이핑,manual_visual_4fps_approx_0.25s
+11971627.mp4,10,9.009,10,0.9909999999999997,Build digital motion,단어 순차 등장,manual_visual_4fps_approx_0.25s
+11971627.mp4,11,10,11.011,1.0109999999999992,Shaping what’s next,별 장식·단어 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,12,11.011,13.25,2.2390000000000008,This system feels built to ship now,흰색에서 검은색 배경으로 전환·긴 문장 수평 이동,manual_visual_4fps_approx_0.25s
+11971627.mp4,13,13.25,14.5,1.25,Sound effects included,별 회전·문구 조립,manual_visual_4fps_approx_0.25s
+11971627.mp4,14,14.5,16,1.5,Screen motion for video,단어 순차 등장·왼쪽부터 퇴장,manual_visual_4fps_approx_0.25s
+11971627.mp4,15,16,16.683333,0.6833330000000011,Refined,짧은 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,16,16.683333,17.684333,1.0009999999999977,Flow,대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,17,17.684333,18.685333,1.0010000000000012,Sync. Break. Go.,단어 순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,18,18.685333,19.686333,1.0010000000000012,Real,흰 배경·대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,19,19.686333,21.25,1.5636669999999988,Real words come to life,검은 배경·순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,20,21.25,22.188833,0.9388329999999989,Fluidity,타이핑·별 장식,manual_visual_4fps_approx_0.25s
+11971627.mp4,21,22.188833,23.189833,1.0010000000000012,Words drop into place,흰 배경·타이핑,manual_visual_4fps_approx_0.25s
+11971627.mp4,22,23.189833,24.190833,1.0010000000000012,Signal,글자별 흐림 퇴장,manual_visual_4fps_approx_0.25s
+11971627.mp4,23,24.190833,25.191833,1.0009999999999977,Neural,글자별 흐림 등장·퇴장,manual_visual_4fps_approx_0.25s
+11971627.mp4,24,25.191833,26.25,1.058167000000001,Content ready now,별 장식·순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,25,26.25,27.193833,0.9438330000000015,Motion that just works,순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,26,27.193833,28.194833,1.0009999999999977,Future,보라 배경·대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,27,28.194833,29.195833,1.0010000000000012,Make it move,검은 배경·짧은 문구,manual_visual_4fps_approx_0.25s
+11971627.mp4,28,29.195833,30.196833,1.0010000000000012,Action,보라 빛 배경·대형 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,29,30.196833,31.25,1.0531669999999984,Pure Design,두 줄 조립,manual_visual_4fps_approx_0.25s
+11971627.mp4,30,31.25,32.198833,0.9488330000000005,Use it your way now,순차 강조,manual_visual_4fps_approx_0.25s
+11971627.mp4,31,32.198833,33.199833,1.0009999999999977,Ready out of the box,흰 배경,manual_visual_4fps_approx_0.25s
+11971627.mp4,32,33.199833,34.25,1.0501670000000018,Works everywhere,검은 배경,manual_visual_4fps_approx_0.25s
+11971627.mp4,33,34.25,35.201833,0.9518330000000006,Effortless,짧은 타이틀,manual_visual_4fps_approx_0.25s
+11971627.mp4,34,35.201833,36.20283366666666,1.0010006666666627,RADIANTFX,흰 배경·종료 로고,manual_visual_4fps_approx_0.25s
+57032891.mp4,1,0,3.25,3.25,WE BRING THE TEXT TO LIFE,단어·글자 순차 팝인,manual_visual_4fps_approx_0.25s
+57032891.mp4,2,3.25,7.75,4.5,YOU GOT THIS,글자별 회전·크기 변화,manual_visual_4fps_approx_0.25s
+57032891.mp4,3,7.75,12.25,4.5,HELLO! EVERYONE,글자별 조립·묶음 회전 퇴장,manual_visual_4fps_approx_0.25s
+57032891.mp4,4,12.25,20.25,8.0,SHADOW,폭 변화·반사·확대,manual_visual_4fps_approx_0.25s
+57032891.mp4,5,20.25,24.75,4.5,FOCUS FADE,두 줄 순차 타이핑·팝인,manual_visual_4fps_approx_0.25s
+57032891.mp4,6,24.75,30.75,6.0,SHADOW TITLES,글자 회전·줄 조립,manual_visual_4fps_approx_0.25s
+57032891.mp4,7,30.75,35,4.25,MOTION DESIGN,기울임 조립·줄 퇴장,manual_visual_4fps_approx_0.25s
+57032891.mp4,8,35,39.75,4.75,ECHO,세로 배열·글자별 크기 변화,manual_visual_4fps_approx_0.25s
+57032891.mp4,9,39.75,43.75,4.0,SIGN?,기울임 등장·정렬,manual_visual_4fps_approx_0.25s
+57032891.mp4,10,43.75,46.149999666666666,2.399999666666666,검은 종료 화면,잔여 배경 소멸,manual_visual_4fps_approx_0.25s
+57523104.mp4,1,0,2.25,2.25,서명 로고,페이드,manual_visual_4fps_approx_0.25s
+57523104.mp4,2,2.25,5.25,3.0,SUCCESS LOVES SPEED,줄별 측면 진입·중앙 정렬,manual_visual_4fps_approx_0.25s
+57523104.mp4,3,5.25,7.5,2.25,DREAM BIG / WORK HARD / STAY FOCUSED,줄별 상하 이동,manual_visual_4fps_approx_0.25s
+57523104.mp4,4,7.5,10,2.5,YOUR ONLY LIMIT IS YOU,글자 조립·줄 분리 퇴장,manual_visual_4fps_approx_0.25s
+57523104.mp4,5,10,12.5,2.5,BELIEVE IN YOURSELF,줄별 크기 변화·수직 퇴장,manual_visual_4fps_approx_0.25s
+57523104.mp4,6,12.5,15.5,3.0,SUCCESS STARTS WITH SELF-DISCIPLINE,RGB 분리·글리치 조립,manual_visual_4fps_approx_0.25s
+57523104.mp4,7,15.5,17.5,2.0,TURN YOUR DREAMS INTO PLANS,세로 스택·아래부터 소멸,manual_visual_4fps_approx_0.25s
+57523104.mp4,8,17.5,19.75,2.25,WORK HARD / STAY HUMBLE,글자 순차 조립,manual_visual_4fps_approx_0.25s
+57523104.mp4,9,19.75,22.25,2.5,PROFIT FOLLOWS PASSION,측면 진입·세 줄 정렬,manual_visual_4fps_approx_0.25s
+57523104.mp4,10,22.25,25,2.75,#BUSINESS #SUCCESS #STARTUP #MONEY #INVESTING,세로 목록 순차 등장,manual_visual_4fps_approx_0.25s
+57523104.mp4,11,25,28,3,YOUR FUTURE IS CREATED BY WHAT YOU DO TODAY,줄별 쌓기,manual_visual_4fps_approx_0.25s
+57523104.mp4,12,28,31,3,SMALL STEPS,굵기 대비·세 줄 구성,manual_visual_4fps_approx_0.25s
+57523104.mp4,13,31,35,4,THANKS FOR WATCHING,다중 줄 조립·분해,manual_visual_4fps_approx_0.25s
+57523104.mp4,14,35,35.76666633333333,0.7666663333333332,배경 종료,텍스트 퇴장,manual_visual_4fps_approx_0.25s
+60153473.mp4,1,0,1.25,1.25,CREATIVE TOOLS,RGB 리본·늘이기,manual_visual_4fps_approx_0.25s
+60153473.mp4,2,1.25,2.25,1.0,RGB TEXT PRO,수직 색 잔상,manual_visual_4fps_approx_0.25s
+60153473.mp4,3,2.25,3.75,1.5,MOTION DESIGN,화면 밖 대형 글자 축소·RGB 분리,manual_visual_4fps_approx_0.25s
+60153473.mp4,4,3.75,5.5,1.75,VISION,RGB 흔들림·선명화,manual_visual_4fps_approx_0.25s
+60153473.mp4,5,5.5,8.25,2.75,DYNAMIC,외곽선 잔상·채움 전환,manual_visual_4fps_approx_0.25s
+60153473.mp4,6,8.25,10.25,2.0,blur,작은 흐린 글자 확대·선명화,manual_visual_4fps_approx_0.25s
+60153473.mp4,7,10.25,12.5,2.25,STRETCH,좌우 컬러 리본 수축,manual_visual_4fps_approx_0.25s
+60153473.mp4,8,12.5,14,1.5,Clean Design,조각·RGB 글리치 정렬,manual_visual_4fps_approx_0.25s
+60153473.mp4,9,14,16.25,2.25,LUMORA,수직 다색 잔상 왕복,manual_visual_4fps_approx_0.25s
+60153473.mp4,10,16.25,19.75,3.5,PIXEL PERFECT,외곽선·컬러 리본,manual_visual_4fps_approx_0.25s
+60153473.mp4,11,19.75,22.75,3.0,LUMORA 공간 변형,기울어진 잔상·복제·접히는 형상,manual_visual_4fps_approx_0.25s
+60153473.mp4,12,22.75,25.433333333333334,2.6833333333333336,THANKS FOR WATCHING,다색 리본 수축·종료 정렬,manual_visual_4fps_approx_0.25s
+60608725.mp4,1,0,2.5,2.5,text animation,큰 첫 단어 축소·타이핑,manual_visual_4fps_approx_0.25s
+60608725.mp4,2,2.5,4.5,2.0,What do you want to write?,단어 강조·타이핑,manual_visual_4fps_approx_0.25s
+60608725.mp4,3,4.5,6.75,2.25,"everything you want,",큰 보라 단어 축소·조립,manual_visual_4fps_approx_0.25s
+60608725.mp4,4,6.75,9.25,2.5,standing in front of you.,단어별 순차 등장·소멸,manual_visual_4fps_approx_0.25s
+60608725.mp4,5,9.25,10.75,1.5,"very easy,",타이핑,manual_visual_4fps_approx_0.25s
+60608725.mp4,6,10.75,12,1.25,and fast.,타이핑·강조색,manual_visual_4fps_approx_0.25s
+60608725.mp4,7,12,14,2,sit back and relax,커서 타이핑,manual_visual_4fps_approx_0.25s
+60608725.mp4,8,14,16.75,2.75,what you are looking for?,큰 보라 단어 축소·뒤 문구 등장,manual_visual_4fps_approx_0.25s
+60608725.mp4,9,16.75,19,2.25,There you have it!,흐림·단어 조립,manual_visual_4fps_approx_0.25s
+60608725.mp4,10,19,23.0,4.0,Thank You,녹색 타이핑·흰색 전환·축소,manual_visual_4fps_approx_0.25s
+60806086.mp4,1,0,1.75,1.75,"Hello, capture the moment",큰 첫 단어 축소·타이핑,manual_visual_4fps_approx_0.25s
+60806086.mp4,2,1.75,3.25,1.5,For a new start,줄 높이 차이·문구 조립,manual_visual_4fps_approx_0.25s
+60806086.mp4,3,3.25,4.5,1.25,are you ready?,글자별 크기 변화,manual_visual_4fps_approx_0.25s
+60806086.mp4,4,4.5,6.25,1.75,We will be stronger together,단어별 순차 등장,manual_visual_4fps_approx_0.25s
+60806086.mp4,5,6.25,7.75,1.5,There you have it!,흐림·문구 조립,manual_visual_4fps_approx_0.25s
+60806086.mp4,6,7.75,9.5,1.75,Sit back and relax,커서 타이핑,manual_visual_4fps_approx_0.25s
+60806086.mp4,7,9.5,11.25,1.75,What do you want to write?,타이핑·청록 강조,manual_visual_4fps_approx_0.25s
+60806086.mp4,8,11.25,12.75,1.5,"very easy,",타이핑·강조색,manual_visual_4fps_approx_0.25s
+60806086.mp4,9,12.75,14.5,1.75,"everything you want,",보라 첫 단어 축소,manual_visual_4fps_approx_0.25s
+60806086.mp4,10,14.5,16.5,2.0,You can write whatever you want,타이핑·기울임·색 강조,manual_visual_4fps_approx_0.25s
+60806086.mp4,11,16.5,18,1.5,Let’s start…,넓은 자간·타이핑,manual_visual_4fps_approx_0.25s
+60806086.mp4,12,18,20.5,2.5,See you later,녹색 타이핑·흰색 전환·축소,manual_visual_4fps_approx_0.25s
+60806086.mp4,13,20.5,21.25,0.75,Thank You,단어 순차 등장,manual_visual_4fps_approx_0.25s
+60806086.mp4,14,21.25,25.024999666666666,3.774999666666666,Now you made it!,겹친 교체·타이핑,manual_visual_4fps_approx_0.25s
+60944035.mp4,1,0,0.5,0.5,도입 공백,배경·작은 모서리 장식,manual_visual_4fps_approx_0.25s
+60944035.mp4,2,0.5,1.5,1.0,INTRODUCING,대형에서 축소,manual_visual_4fps_approx_0.25s
+60944035.mp4,3,1.5,4.5,3.0,BY KLONEDIKE,보라 외곽선·흰 채움·수평 띠,manual_visual_4fps_approx_0.25s
+60944035.mp4,4,4.5,5.5,1.0,DO MORE,외곽선에서 채움,manual_visual_4fps_approx_0.25s
+60944035.mp4,5,5.5,6.25,0.75,THAN,외곽선에서 채움,manual_visual_4fps_approx_0.25s
+60944035.mp4,6,6.25,9.25,3.0,EXPECTED,채움 유지,manual_visual_4fps_approx_0.25s
+60944035.mp4,7,9.25,10,0.75,TEXT,확대에서 축소·외곽선,manual_visual_4fps_approx_0.25s
+60944035.mp4,8,10,10.75,0.75,ANIMATION,확대에서 축소·외곽선,manual_visual_4fps_approx_0.25s
+60944035.mp4,9,10.75,13.25,2.5,PACK,확대·외곽선·채움,manual_visual_4fps_approx_0.25s
+60944035.mp4,10,13.25,18.25,5.0,GOD IS LOVE!,작은 외곽선 확대·수평 채움 스캔,manual_visual_4fps_approx_0.25s
+60944035.mp4,11,18.25,23.25,5.0,DISCIPLINE,작은 글자 확대·외곽선 유지,manual_visual_4fps_approx_0.25s
+60944035.mp4,12,23.25,27,3.75,WAKE UP BRO!,확대 펄스·채움 유지,manual_visual_4fps_approx_0.25s
+60944035.mp4,13,27,28.5,1.5,CHOOSE,작은 글자 확대,manual_visual_4fps_approx_0.25s
+60944035.mp4,14,28.5,29.75,1.25,GROWTH,외곽선·채움,manual_visual_4fps_approx_0.25s
+60944035.mp4,15,29.75,32.5,2.75,EVERY DAY,외곽선·채움,manual_visual_4fps_approx_0.25s
+60944035.mp4,16,32.5,37.75,5.25,SUCCESS BEGINS WITH DISCIPLINE,두 줄 겹침·외곽선,manual_visual_4fps_approx_0.25s
+60944035.mp4,17,37.75,42.5,4.75,MOTION,외곽선·채움·축소,manual_visual_4fps_approx_0.25s
+60944035.mp4,18,42.5,44.13333333333333,1.6333333333333329,Thank you for viewing,종료 타이틀,manual_visual_4fps_approx_0.25s
+62295607.mp4,1,0,1.25,1.25,별 장식,가로 폭 변화·회전처럼 보이는 명암 변화,manual_visual_4fps_approx_0.25s
+62295607.mp4,2,1.25,2.25,1.0,Clean,대형 반투명 등장·축소,manual_visual_4fps_approx_0.25s
+62295607.mp4,3,2.25,3,0.75,text,대형 반투명 등장·축소,manual_visual_4fps_approx_0.25s
+62295607.mp4,4,3,3.75,0.75,animation,대형 반투명 등장·축소,manual_visual_4fps_approx_0.25s
+62295607.mp4,5,3.75,5.45,1.7000000000000002,preset,축소·색 강조,manual_visual_4fps_approx_0.25s
+62295607.mp4,6,5.45,7.666667,2.216667,It’s really easy to manage.,흰 배경·별 장식·순차 등장,manual_visual_4fps_approx_0.25s
+62295607.mp4,7,7.666667,8.75,1.0833329999999997,별 장식,검은 배경·작은 장식,manual_visual_4fps_approx_0.25s
+62295607.mp4,8,8.75,11.5,2.75,Good text design is invisible,단어별 등장·퇴장,manual_visual_4fps_approx_0.25s
+62295607.mp4,9,11.5,13.25,1.75,Will make your video,단어별 등장·퇴장,manual_visual_4fps_approx_0.25s
+62295607.mp4,10,13.25,15.25,2.0,more expensive,글자 순차 등장,manual_visual_4fps_approx_0.25s
+62295607.mp4,11,15.25,16.5,1.25,leave,아래쪽이 어두운 글자·순차 등장,manual_visual_4fps_approx_0.25s
+62295607.mp4,12,16.5,17.5,1.0,your,글자 순차 등장,manual_visual_4fps_approx_0.25s
+62295607.mp4,13,17.5,19.266667,1.7666670000000018,message,글자 순차 등장·퇴장,manual_visual_4fps_approx_0.25s
+62295607.mp4,14,19.266667,21.283333,2.016665999999997,Really smooth.,흰 배경·두 별 장식,manual_visual_4fps_approx_0.25s
+62295607.mp4,15,21.283333,23.75,2.466667000000001,Clean. Simple. Attractive.,검은 배경·단어 강조,manual_visual_4fps_approx_0.25s
+62295607.mp4,16,23.75,26.25,2.5,we draw attention to something important,작은 문장·단어 조립,manual_visual_4fps_approx_0.25s
+62295607.mp4,17,26.25,27.25,1.0,별 장식,폭 변화,manual_visual_4fps_approx_0.25s
+62295607.mp4,18,27.25,29.25,2.0,Just what I needed,단어 순차 등장·퇴장,manual_visual_4fps_approx_0.25s
+62295607.mp4,19,29.25,30.25,1.0,Intro,타이틀 등장,manual_visual_4fps_approx_0.25s
+62295607.mp4,20,30.25,31.25,1.0,style,타이틀 교체,manual_visual_4fps_approx_0.25s
+62295607.mp4,21,31.25,32.5,1.25,animation,타이틀 교체,manual_visual_4fps_approx_0.25s
+62295607.mp4,22,32.5,36.299999666666665,3.7999996666666647,Thanks for watching!,타이핑·왼쪽부터 퇴장,manual_visual_4fps_approx_0.25s
+62999763.mp4,1,0,1,1,Motion,흐림에서 선명화,manual_visual_4fps_approx_0.25s
+62999763.mp4,2,1,2,1,Digital,글자별 변형·조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,3,2,3,1,Digital Type is Here,흰 배경·순차 등장,manual_visual_4fps_approx_0.25s
+62999763.mp4,4,3,5,2,AI / Ask about our AI,검은 배경·글로우·색 강조,manual_visual_4fps_approx_0.25s
+62999763.mp4,5,5,5.708333,0.7083329999999997,About time,분리된 글자 조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,6,5.708333,6.708333,1.0,About time to,흰 배경·문구 확장,manual_visual_4fps_approx_0.25s
+62999763.mp4,7,6.708333,8,1.2916670000000003,Get,검은 배경·글자 조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,8,8,9,1,Get Ready,보라색·단어 확장,manual_visual_4fps_approx_0.25s
+62999763.mp4,9,9,10,1,Ready,대형 자간 수축,manual_visual_4fps_approx_0.25s
+62999763.mp4,10,10,11,1,Set,대형 자간 수축,manual_visual_4fps_approx_0.25s
+62999763.mp4,11,11,12,1,Make,흰 배경·흩어진 글자·스케일 수축,manual_visual_4fps_approx_0.25s
+62999763.mp4,12,12,12.916667,0.9166670000000003,Make a new project,작은 문장 조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,13,12.916667,15,2.0833329999999997,project / project to / to create,검은 배경·장식·수평 교체,manual_visual_4fps_approx_0.25s
+62999763.mp4,14,15,16,1,Create with new tools,작은 문장·장식,manual_visual_4fps_approx_0.25s
+62999763.mp4,15,16,17.125,1.125,Fast,대형 분리 글자·보라색 조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,16,17.125,18.125,1.0,Type,대형 자간 수축,manual_visual_4fps_approx_0.25s
+62999763.mp4,17,18.125,19,0.875,of,대형 자간 수축,manual_visual_4fps_approx_0.25s
+62999763.mp4,18,19,20.5,1.5,Style and work flow,작은 문장·장식,manual_visual_4fps_approx_0.25s
+62999763.mp4,19,20.5,21.5,1.0,flows with,대형 순차 등장,manual_visual_4fps_approx_0.25s
+62999763.mp4,20,21.5,22.5,1.0,flows with the,흰 배경·문구 확장,manual_visual_4fps_approx_0.25s
+62999763.mp4,21,22.5,23.333333,0.8333329999999997,beat,검은 배경·회전,manual_visual_4fps_approx_0.25s
+62999763.mp4,22,23.333333,24.25,0.9166670000000003,drop,흰 배경·소형 타이틀,manual_visual_4fps_approx_0.25s
+62999763.mp4,23,24.25,25.25,1.0,Check,검은 배경·글자 조립,manual_visual_4fps_approx_0.25s
+62999763.mp4,24,25.25,26.25,1.0,Check us out at,흰 배경·작은 문장,manual_visual_4fps_approx_0.25s
+62999763.mp4,25,26.25,27.75,1.5,Our Web Site,검은 배경·단어 타이핑·글로우,manual_visual_4fps_approx_0.25s
+62999763.mp4,26,27.75,28.75,1.0,Check out our Web Site,작은 문장·색 강조,manual_visual_4fps_approx_0.25s
+62999763.mp4,27,28.75,29.75,1.0,Created by,종료 크레딧,manual_visual_4fps_approx_0.25s
+62999763.mp4,28,29.75,30.5,0.75,ZeroLink,종료 크레딧,manual_visual_4fps_approx_0.25s
+62999763.mp4,29,30.5,33.5,3.0,컬러 로고,중앙 로고·퇴장,manual_visual_4fps_approx_0.25s
+62999763.mp4,30,33.5,34.99999966666667,1.4999996666666675,검은 종료 화면,작은 하단 장식 유지,manual_visual_4fps_approx_0.25s
+63211445.mp4,1,0,3,3,Motion Tools,왼쪽 고정·글자별 타이핑·선택 박스,manual_visual_4fps_approx_0.25s
+63211445.mp4,2,3,5.233333,2.233333,Ready to setup now,흰 배경·타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,3,5.233333,7.75,2.516667,Hand crafted work flow,검은 배경·타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,4,7.75,9.833333,2.0833329999999997,Clean / and / crisp / quality,단어별 교체·선택 박스,manual_visual_4fps_approx_0.25s
+63211445.mp4,5,9.833333,12.25,2.4166670000000003,Select text tools are here,흰 배경·파란 선택 영역·타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,6,12.25,14.7,2.4499999999999993,Build it from the ground up,어두운 선택 영역·다중 줄 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,7,14.7,17.166667,2.466667000000001,Adjust by words or characters.,검은 배경·다중 줄 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,8,17.166667,21.266667,4.100000000000001,Adjustable controls,흰 배경·파란 선택 영역·다중 줄,manual_visual_4fps_approx_0.25s
+63211445.mp4,9,21.266667,24.633333,3.3666659999999986,Streamline your editing,검은 배경·밝은 선택 영역·다중 줄,manual_visual_4fps_approx_0.25s
+63211445.mp4,10,24.633333,27.033333,2.3999999999999986,Customize speed of text,흰 배경·선택 박스·타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,11,27.033333,31,3.966667000000001,Highlighted text,검은 배경·분홍 강조 영역이 현재 단어를 따라감,manual_visual_4fps_approx_0.25s
+63211445.mp4,12,31,35.5,4.5,Professionally made,다중 줄 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,13,35.5,38,2.5,Selection type tool,작은 문구 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,14,38,39.25,1.25,Available today,작은 문구 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,15,39.25,40.75,1.5,Grab now,작은 문구 타이핑,manual_visual_4fps_approx_0.25s
+63211445.mp4,16,40.75,41.75,1.0,ZeroLink,종료 크레딧,manual_visual_4fps_approx_0.25s
+63211445.mp4,17,41.75,44.25,2.5,컬러 로고,중앙 로고·퇴장,manual_visual_4fps_approx_0.25s
+63211445.mp4,18,44.25,46.00000033333333,1.7500003333333325,검은 종료 화면,하단 장식 유지,manual_visual_4fps_approx_0.25s
