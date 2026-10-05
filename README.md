@@ -48,3 +48,7 @@ python -B text_motion/scripts/2026-10-05-text-motion.py --workspace "작업폴�
 ## 제작 기록
 
 [샘플 기반 스킬 제작·수정 기록](docs/2026-10-05-text-motion-노션정리.md)
+
+## 만든 사람
+
+양파고 (Yang Phago)
