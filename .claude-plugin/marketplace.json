@@ -1,0 +1,12 @@
+{
+  "name": "text-motion-all",
+  "owner": { "name": "yangphago", "url": "https://github.com/roughkyo" },
+  "plugins": [
+    {
+      "name": "text-motion",
+      "source": "./",
+      "description": "문서 내용을 샘플 기반 키네틱 타이포그래피 모션그래픽 영상으로 만드는 text-motion 스킬",
+      "version": "0.3.0"
+    }
+  ]
+}

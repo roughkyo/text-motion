@@ -1,0 +1,9 @@
+{
+  "name": "text-motion",
+  "version": "0.3.0",
+  "description": "문서 내용을 샘플 기반 키네틱 타이포그래피 모션그래픽 영상으로 만드는 스킬 패키지",
+  "author": { "name": "yangphago", "url": "https://github.com/roughkyo" },
+  "homepage": "https://github.com/roughkyo/text-motion",
+  "repository": "https://github.com/roughkyo/text-motion",
+  "keywords": ["motion-graphics", "kinetic-typography", "video", "storyboard", "codex"]
+}

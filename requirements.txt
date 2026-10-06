@@ -1,0 +1,5 @@
+Pillow
+numpy
+pypdf
+python-pptx
+python-docx
