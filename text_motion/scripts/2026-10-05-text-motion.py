@@ -483,7 +483,7 @@ class Studio:
             self.audio = None
             self.music = None
             # 이전 주제의 음악을 새 원문에 자동 적용하지 않는다.
-            self.music_data = {'topic': '새 원문의 주제에 맞는 음악 후보를 Codex에 요청해주세요.', 'candidates': []}
+            self.music_data = {'topic': '새 원문의 주제에 맞는 음악 후보를 범용스킬에 요청해주세요.', 'candidates': []}
             self.demo_candidates = False
         elif kind == 'music_json':
             self.music_data = validate_music(json.loads(payload.decode('utf-8-sig')))
@@ -692,7 +692,7 @@ def serve(studio, port):
                         studio.review_request = None
                         studio.audio = None
                         studio.music = None
-                        studio.music_data = {'topic': 'Codex가 주제와 사운드 조건에 맞는 음악 후보를 준비합니다.', 'candidates': []}
+                        studio.music_data = {'topic': '범용스킬이 주제와 사운드 조건에 맞는 음악 후보를 준비합니다.', 'candidates': []}
                         studio.revision += 1
                         value = {'source': studio.source}
                     elif self.path == '/api/agent-music':

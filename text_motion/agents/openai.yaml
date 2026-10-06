@@ -1,4 +1,4 @@
 interface:
   display_name: "Text Motion"
   short_description: "소스 접수와 원본 샘플 선택 후 스토리보드·음악 추천을 제공하고 승인된 MP4 만들기"
-  default_prompt: "$text-motion으로 제공한 소스를 접수하고 원본 10개 중 하나를 선택할 브라우저를 보여줘. 선택 후 스토리보드와 Pixabay 음악 후보를 준비하고 수정 반영·최종 승인 후 영상으로 만들어줘."
+  default_prompt: "text-motion 범용스킬로 제공한 소스를 접수하고 원본 10개 중 하나를 선택할 브라우저를 보여줘. 선택 후 스토리보드와 Pixabay 음악 후보를 준비하고 수정 반영·최종 승인 후 영상으로 만들어줘."

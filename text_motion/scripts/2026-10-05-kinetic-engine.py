@@ -1,5 +1,6 @@
 """샘플별 동작, 음원 트랜지언트, 동일 시간축의 프레임 합성."""
 import bisect
+import importlib.util
 import hashlib
 import json
 import math
@@ -11,7 +12,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont, ImageOps
 
-VERSION = 'kinetic-3-reference-flow'
+VERSION = 'kinetic-4-sample-signature'
 # 초 단위 관찰값은 references 문서의 원프레임 근거와 대응한다.
 PROFILES = {
     'purple_words': ('11971627', 1.05, 0.30, ['word', 'blur', 'tracking', 'type'], ['cut', 'blur', 'whip']),
@@ -24,6 +25,20 @@ PROFILES = {
     'clean_scale': ('62295607', 1.48, 0.50, ['scale', 'word', 'blur', 'scale'], ['blur', 'cut']),
     'letter_assemble': ('62999763', 1.00, 0.58, ['scatter', 'tracking', 'stretch', 'rotate'], ['cut', 'rotate', 'whip']),
     'selection_type': ('63211445', 2.46, 0.90, ['type', 'select', 'highlight', 'type'], ['cut']),
+}
+# 등장 0.2초에만 차이가 있으면 정착 화면이 모든 샘플에서 같아진다.
+# 아래 서명은 유지 구간 전체에 남아 선택한 원본을 구분하게 한다(원본 관찰의 2D 근사).
+STYLES = {
+    'purple_words': {'accents': [(152, 121, 250), (196, 172, 255)], 'keyword': True, 'tracking': (.06, 0), 'stars': True},
+    'bold_pop': {'accents': [(255, 70, 80), (70, 140, 255), (70, 230, 120), (60, 220, 220)], 'glow': .85, 'reflect': True, 'light': .45, 'fragments': True},
+    'mono_stack': {'accents': [(255, 255, 255)], 'muted': (150, 150, 158)},
+    'rgb_trail': {'accents': [(255, 40, 70), (40, 190, 255), (255, 215, 45)], 'echo': True, 'rgb_hold': .30},
+    'smoke_cool': {'accents': [(120, 200, 255), (175, 232, 255)], 'glow': .25, 'regular': True, 'cursor': True},
+    'smoke_purple': {'accents': [(86, 232, 134), (80, 220, 203), (190, 150, 255)], 'glow': .55, 'glow_color': (150, 100, 255), 'tracking': (.10, 0)},
+    'outline_scan': {'accents': [(170, 120, 255), (120, 200, 255)], 'halo': True, 'scanline': True},
+    'clean_scale': {'accents': [(110, 170, 255), (150, 200, 255)], 'ghost': True, 'push': .05, 'glow': .45, 'stars': True},
+    'letter_assemble': {'accents': [(225, 228, 240), (190, 196, 215)], 'shade': True, 'tracking': (.12, .01), 'fragments': True, 'stars': True},
+    'selection_type': {'accents': [(110, 151, 233)]},
 }
 
 
@@ -123,7 +138,7 @@ def make_timeline(text, preset, target_seconds=None, pacing='standard'):
             raise ValueError('장면당 최대 5줄입니다. 문구를 분리하세요.')
         visible = len(re.sub(r'\s', '', content))
         mode = profile[3][i % len(profile[3])]
-        reveal = profile[2] * (0.68 if pacing == 'tight' else 1)
+        reveal = profile[2] * (0.85 if pacing == 'tight' else 1)
         if preset == 'selection_type':
             reveal = max(0.35, (visible - 1) / (12 if pacing == 'tight' else 6))
         reveal = max(reveal, 0.10 * (len(lines) - 1) + 0.16)
@@ -190,10 +205,11 @@ def bind_rhythm(project, rhythm):
 def sprite(text, size, color, regular=False, outline=False, heavy=False):
     f = font(size, regular)
     stroke = max(1, round(size * (0.015 if heavy else 0.010))) if outline or heavy else 0
-    box = f.getbbox(text, stroke_width=stroke)
+    # 글자별 bbox 상단이 아니라 공통 기준 글자에 맞춰야 영문·숫자 기준선이 어긋나지 않는다(예: 10km/h의 m).
+    top = f.getbbox('가', stroke_width=stroke)[1]
     pad = max(4, round(size * 0.18))
     im = Image.new('RGBA', (max(1, math.ceil(f.getlength(text)) + pad * 2), size + pad * 2))
-    ImageDraw.Draw(im).text((pad, pad - box[1]), text, font=f,
+    ImageDraw.Draw(im).text((pad, pad - top), text, font=f,
                            fill=(0, 0, 0, 0) if outline else color,
                            stroke_width=stroke, stroke_fill=color)
     return im
@@ -299,6 +315,78 @@ def fragments(layer, t, origin, strength, seed, color):
             d.line((x-r*3, y, x+r*3, y), fill=c, width=max(1, round(r*.4)))
 
 
+def tint(alpha, color, opacity):
+    im = Image.new('RGBA', alpha.size, (*color[:3], 0))
+    im.putalpha(alpha.point(lambda a: round(a * opacity)))
+    return im
+
+
+def soft(alpha, radius):
+    # 1/4 해상도에서 흐려 1080p 프레임 비용을 제한한다.
+    w, h = alpha.size
+    small = alpha.resize((max(1, w // 4), max(1, h // 4)), Image.Resampling.BILINEAR)
+    return small.filter(ImageFilter.GaussianBlur(max(.5, radius / 4))).resize((w, h), Image.Resampling.BILINEAR)
+
+
+def dilate(alpha, distance):
+    distance = max(1, round(distance))
+    grown = alpha
+    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)):
+        grown = ImageChops.lighter(grown, ImageChops.offset(alpha, dx * distance, dy * distance))
+    return grown
+
+
+def signature(layer, scene, preset, local, width, height, scale, accent):
+    """등장 이후 유지 구간에도 남는 샘플별 장식. 퇴장 궤적보다 먼저 합성한다."""
+    style = STYLES[preset]
+    alpha = layer.getchannel('A')
+    box = alpha.getbbox()
+    if not box:
+        return layer
+    hold = clamp((local - scene['reveal']) / max(.05, scene['duration'] - scene['reveal'] - scene['transition']))
+    settled = clamp((local - scene['reveal'] * .5) / max(.05, scene['reveal'] * .5))
+    out = Image.new('RGBA', layer.size)
+    if style.get('ghost'):
+        # 62295607: 큰 반투명 글자가 뒤에 남아 천천히 수축한다.
+        # 글자 영역만 잘라 확대해 전체 화면 블러 비용을 피한다.
+        factor = 1.55 - .25*hold
+        cx, cy = (box[0]+box[2])/2, (box[1]+box[3])/2
+        place(out, layer.crop(box), width/2 + (cx-width/2)*factor, height/2 + (cy-height/2)*factor,
+              factor, alpha=.14*settled, blur=6*scale)
+    if style.get('echo'):
+        # 60153473: 붉은·청록 잔상이 유지 구간에도 좌우로 흔들린다.
+        drift = width * .012 * (1.2 + math.sin(local * 5.0))
+        for color, sign in (((255, 40, 70), -1), ((40, 190, 255), 1)):
+            place(out, tint(alpha, color, .55*settled), width/2 + sign*drift, height/2 + sign*drift*.3)
+    if style.get('glow'):
+        out.alpha_composite(tint(soft(alpha, 30*scale), style.get('glow_color', accent), style['glow']*settled))
+    if style.get('reflect'):
+        # 57032891: 바닥 반사.
+        mirrored = ImageOps.flip(layer.crop(box))
+        fade = ImageOps.invert(Image.linear_gradient('L').resize(mirrored.size))
+        mirrored.putalpha(ImageChops.multiply(mirrored.getchannel('A'), fade).point(lambda a: round(a * .32 * settled)))
+        out.alpha_composite(mirrored, (box[0], min(height - 1, box[3] + round(8*scale))))
+    if style.get('halo'):
+        # 60944035: 채움 글자 바깥의 강조색 외곽선.
+        ring = ImageChops.subtract(dilate(alpha, 7*scale), dilate(alpha, 3*scale))
+        out.alpha_composite(tint(ring, accent, .95*settled))
+    out.alpha_composite(layer)
+    if style.get('scanline') and settled > 0:
+        line_y = box[1] + (box[3] - box[1]) * ((local * .9) % 1)
+        ImageDraw.Draw(out).rectangle((box[0] - 24*scale, line_y, box[2] + 24*scale, line_y + max(1, 3*scale)),
+                                      fill=(*accent[:3], round(170 * settled)))
+    if style.get('cursor') and settled > 0 and int(local * 2.5) % 2 == 0:
+        # 60608725: 정착 뒤에도 문장 끝 커서가 깜빡인다.
+        h = (box[3] - box[1]) / max(1, len(scene['lines']))
+        ImageDraw.Draw(out).rectangle((box[2] + 10*scale, box[3] - h*.9, box[2] + 10*scale + max(1, 3*scale), box[3] - h*.05),
+                                      fill=(*accent[:3], 255))
+    if style.get('push'):
+        pushed = Image.new('RGBA', out.size)
+        place(pushed, out, width/2, height/2, 1 + style['push']*hold)
+        out = pushed
+    return out
+
+
 def text_layer(scene, preset, local, width, height):
     layer = Image.new('RGBA', (width, height))
     scale = width / 1920
@@ -306,8 +394,12 @@ def text_layer(scene, preset, local, width, height):
     source_time = reference_time(preset, scene['start']+local, scene.get('project_duration', scene['start']+scene['duration']))
     light = background_state(preset, source_time)['light']
     base = (18, 17, 28, 255) if light else (247, 245, 252, 255)
-    accents = [(152, 121, 250, 255), (80, 220, 203, 255), (236, 100, 170, 255), (86, 232, 134, 255)]
-    accent = accents[index % 4]
+    style = STYLES[preset]
+    accent = (*style['accents'][index % len(style['accents'])], 255)
+    hold = clamp((local - scene['reveal']) / max(.05, scene['duration'] - scene['reveal'] - scene['transition']))
+    track_start, track_end = style.get('tracking', (0, 0))
+    words = list(re.finditer(r'\S+', scene['text'].replace('\n', '')))
+    keyword = max(words, key=lambda match: len(match.group())) if style.get('keyword') and len(words) > 1 else None
     size = max(10, round(scene['font_size'] * scale))
     lines = scene['lines']
     line_h = size * (1.07 if preset in ('bold_pop', 'mono_stack') else 1.28)
@@ -317,10 +409,12 @@ def text_layer(scene, preset, local, width, height):
     total_chars = sum(len(line) for line in lines)
     offset = 0
     for row, line in enumerate(lines):
-        regular = preset == 'mono_stack' and row % 3 == 1
+        regular = (preset == 'mono_stack' and row % 3 == 1) or bool(style.get('regular'))
         f = font(size, regular)
         lengths = [f.getlength(c) for c in line]
-        full = sum(lengths)
+        # 자간은 유지 구간 동안 계속 수축한다(11971627·62999763).
+        gap = size * (track_start + (track_end - track_start) * ease(hold))
+        full = sum(lengths) + gap * max(0, len(line) - 1)
         left = width*.23 if preset == 'selection_type' else (width-full)/2
         # 완료된 타이핑의 시작점은 고정; 전체 문장을 재정렬하지 않는다.
         if preset == 'selection_type' and left+full > width*.91:
@@ -329,6 +423,8 @@ def text_layer(scene, preset, local, width, height):
         progress = ease((local-row*.10) / max(.12, reveal-row*.10))
         if mode in ('stack', 'vertical', 'glitch', 'scan', 'outline', 'reflect', 'ribbon', 'rgb', 'scale'):
             color = accent if mode in ('outline',) else base
+            if regular and style.get('muted') and not light:
+                color = (*style['muted'], 255)
             im = sprite(line, size, color, regular, mode == 'outline', preset in ('mono_stack', 'bold_pop'))
             dx = (1-progress) * width * (.8 if row%2 == 0 else -.8) if mode in ('stack', 'glitch') else 0
             dy = (1-progress) * height*.55 if mode == 'vertical' else 0
@@ -373,9 +469,11 @@ def text_layer(scene, preset, local, width, height):
                 if mode in ('type','select','highlight'):
                     p = 1.0 if local >= delay else 0.0
                 if p <= 0 or char.isspace():
-                    x += lengths[j]
+                    x += lengths[j] + gap
                     continue
                 color = accent if (mode in ('hero','word','tracking') and local < reveal+.12) or (mode=='pop' and row==0) else base
+                if keyword and keyword.start() <= rank < keyword.end():
+                    color = accent  # 11971627: 핵심 단어는 유지 구간에도 강조색
                 dx, dy, factor, angle, blur = 0, 0, 1, 0, 0
                 if mode in ('scatter','stretch','tracking','rotate'):
                     q = ease((local-delay*.45)/max(.12,reveal*.70))
@@ -401,8 +499,8 @@ def text_layer(scene, preset, local, width, height):
                     current_word = j >= max(0, int(total_chars*clamp(local/reveal))-4)
                     if mode != 'highlight' or current_word:
                         d.rectangle((x-2*scale,y-size*.48,x+lengths[j]+2*scale,y+size*.50), fill=(110,151,233,180) if light else (87,70,135,200))
-                im = sprite(char, size, color, heavy=preset=='bold_pop')
-                if preset=='letter_assemble' and mode in ('tracking','rotate'):
+                im = sprite(char, size, color, regular=regular, heavy=preset=='bold_pop')
+                if style.get('shade'):
                     im = shaded_sprite(char,size,color)
                 if mode=='blur' and out>0:
                     char_exit = clamp((out-rank/max(1,total_chars)*.35)/.65)
@@ -412,10 +510,10 @@ def text_layer(scene, preset, local, width, height):
                     place(layer, im, x+lengths[j]/2+dx, y+dy, factor, 1+(1-p)*2.5, angle=angle, alpha=p)
                 else:
                     place(layer, im, x+lengths[j]/2+dx, y+dy, factor, angle=angle, alpha=p, blur=blur)
-                x += lengths[j]
+                x += lengths[j] + gap
             if mode in ('type','select'):
                 shown = sum(1 for j in range(len(line)) if local >= (offset+j)/max(1,total_chars-1)*max(.02,reveal-.18))
-                extent = sum(lengths[:shown])
+                extent = sum(lengths[:shown]) + gap * max(0, shown - 1)
                 d = ImageDraw.Draw(layer)
                 if shown and preset == 'selection_type':
                     box = (left-4*scale,y-size*.55,left+extent+4*scale,y+size*.55)
@@ -426,6 +524,7 @@ def text_layer(scene, preset, local, width, height):
                 if local < reveal and int(local*8)%2==0:
                     d.line((left+extent,y-size*.45,left+extent,y+size*.45),fill=base,width=max(1,round(2*scale)))
         offset += len(line)
+    layer = signature(layer, scene, preset, local, width, height, scale, accent)
     # 문장 전체 페이드 대신 샘플군별 퇴장 궤적을 적용한다.
     if out > 0:
         effect = scene['exit']
@@ -464,17 +563,26 @@ def frame(scene, preset, local, width=640, height=360):
         enlarged = Image.new('RGBA',layer.size)
         place(enlarged,layer,width/2,height/2,1+pulse)
         layer = enlarged
-    # 파편은 진입/스네어 후보에 짧게만 나타나 텍스트 유지 구간을 가리지 않는다.
-    if scene['pacing']=='tight' and not preset.startswith('smoke'):
-        fragments(image,t,scene['start'],.8,scene['index']+41,(165,130,255))
+    style = STYLES[preset]
+    accents = style['accents']
+    accent = accents[scene['index'] % len(accents)]
+    if style.get('light'):
+        # 57032891: 장면마다 적·청·녹·청록 조명이 바뀐다. 원본 외곽 색 위에 중앙 조명만 더한다.
+        yy, xx = np.mgrid[0:36, 0:64]
+        falloff = np.clip(1 - np.hypot((xx-31.5)/34, (yy-17.5)/20), 0, 1) ** 1.6
+        glow = Image.fromarray((falloff * 255 * style['light']).astype(np.uint8)).resize((width, height), Image.Resampling.BILINEAR)
+        image.alpha_composite(tint(glow, accent, 1))
+    # 파편은 해당 샘플군에만 쓴다. 모든 샘플에 같은 파편을 넣으면 결과가 서로 비슷해진다.
+    if scene['pacing']=='tight' and style.get('fragments'):
+        fragments(image,t,scene['start'],.8,scene['index']+41,accent)
         for j,e in enumerate(events):
             if e['kind']=='snare_candidate':
-                fragments(image,t,e['time'],e['strength'],j+100,(120,211,255))
-    if preset in ('purple_words','clean_scale','letter_assemble'):
-        star(ImageDraw.Draw(image),width*.80,height*.26,width*.025,t*1.4,(136,103,220,220))
+                fragments(image,t,e['time'],e['strength'],j+100,accents[(j+1) % len(accents)])
+    if style.get('stars'):
+        star(ImageDraw.Draw(image),width*.80,height*.26,width*.025,t*1.4,(*accent[:3],220))
     image.alpha_composite(layer)
     if preset=='rgb_trail' or (preset=='mono_stack' and scene['motion']=='glitch'):
-        strength = max(0,1-local/max(.01,scene['reveal']))
+        strength = max(style.get('rgb_hold', 0),1-local/max(.01,scene['reveal']))
         if strength > .02:
             channels = image.convert('RGB').split()
             dx = round(width*.022*strength)
@@ -497,3 +605,37 @@ def project_frame(project, t, width=640, height=360):
         image.alpha_composite(old)
         image = image.convert('RGB')
     return image
+
+
+# ---- kinetic-5 위임
+# 프레임 단위 분석을 마친 샘플(현재 11971627, 60608725)은 원본 장면 순서 템플릿 엔진으로 위임한다.
+# 나머지 샘플은 분석 전까지 아래 기존 함수를 쓴다.
+_spec = importlib.util.spec_from_file_location('frame_spec_engine', Path(__file__).with_name('2026-10-06-frame-spec-engine.py'))
+frame_spec = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(frame_spec)
+_legacy = {'make_timeline': make_timeline, 'bind_rhythm': bind_rhythm, 'frame': frame, 'project_frame': project_frame}
+SPEC_PRESETS = set(frame_spec.PRESET_SAMPLE)
+
+
+def make_timeline(text, preset, target_seconds=None, pacing='standard'):
+    if preset in SPEC_PRESETS:
+        return frame_spec.make_timeline(text, preset, target_seconds, pacing)
+    return _legacy['make_timeline'](text, preset, target_seconds, pacing)
+
+
+def bind_rhythm(project, rhythm):
+    if project.get('preset') in SPEC_PRESETS or (project.get('scenes') and project['scenes'][0].get('renderer') == frame_spec.VERSION):
+        return frame_spec.bind_rhythm(project, rhythm)
+    return _legacy['bind_rhythm'](project, rhythm)
+
+
+def frame(scene, preset, local, width=640, height=360):
+    if preset in SPEC_PRESETS:
+        return frame_spec.frame(scene, preset, local, width, height)
+    return _legacy['frame'](scene, preset, local, width, height)
+
+
+def project_frame(project, t, width=640, height=360):
+    if project.get('preset') in SPEC_PRESETS:
+        return frame_spec.project_frame(project, t, width, height)
+    return _legacy['project_frame'](project, t, width, height)

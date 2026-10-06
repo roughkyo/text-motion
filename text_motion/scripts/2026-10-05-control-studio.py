@@ -1,4 +1,4 @@
-"""Codex가 로컬 제작 서비스에 원문·스토리보드·음악을 전달하는 연결 도구."""
+"""범용스킬이 로컬 제작 서비스에 원문·스토리보드·음악을 전달하는 연결 도구."""
 import argparse
 import base64
 import importlib.util
@@ -71,12 +71,12 @@ def run(args):
         return call(base + '/api/prepare', token, payload)
     if args.action == 'music':
         if not args.music_json:
-            raise ValueError('Codex가 확인한 후보 파일을 --music-json으로 지정해주세요.')
+            raise ValueError('범용스킬이 확인한 후보 파일을 --music-json으로 지정해주세요.')
         payload['music_data'] = json.loads(Path(args.music_json).read_text(encoding='utf-8-sig'))
         return call(base + '/api/agent-music', token, payload)
     if args.action == 'audio':
         if not state['music'] or not args.audio_file:
-            raise ValueError('사용자가 선택한 곡과 Codex가 내려받은 파일이 필요합니다.')
+            raise ValueError('사용자가 선택한 곡과 범용스킬이 내려받은 파일이 필요합니다.')
         file = Path(args.audio_file)
         if file.stat().st_size > 32 * 1024 * 1024:
             raise ValueError('음악 파일은 32MB 이하여야 합니다.')
